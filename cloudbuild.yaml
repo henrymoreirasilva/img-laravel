@@ -3,7 +3,7 @@ steps:
     name: "gcr.io/$PROJECT_ID/docker-compose:1.24.0"
     args: ["-f", "docker-compose-cloudbuild.yaml", "up", "-d"]
 
-  - id: "Rodando composer"
+  - id: "Rodando Composer"
     name: "gcr.io/cloud-builders/docker"
     args: ["exec", "-t", "app", "composer", "install"]
 
@@ -15,10 +15,10 @@ steps:
     name: "gcr.io/cloud-builders/docker"
     args: ["exec", "-t", "app", "php", "/var/www/artisan", "key:generate"]
 
-  - id: "Rodando migrações"
+  - id: "Rodando Migrações"
     name: "gcr.io/cloud-builders/docker"
     args: ["exec", "-t", "app", "php", "/var/www/artisan", "migrate"]
 
-  - id: "Rodando testes"
+  - id: "Rodando Testes"
     name: "gcr.io/cloud-builders/docker"
     args: ["exec", "-t", "app", "php", "/var/www/vendor/bin/phpunit", "-c", "/var/www/phpunit.xml"]
